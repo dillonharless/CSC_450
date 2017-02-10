@@ -1,2 +1,3 @@
 # CSC_450
 Purchasing Site
+This Website will be for artwork produced by [insert artist here] where people can browse and purchase the various paintings,sculptures,photographs...
