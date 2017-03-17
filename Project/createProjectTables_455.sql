@@ -7,16 +7,17 @@ drop table if exists SiteCustomers;
 drop table if exists SiteProducts;
 drop table if exists SiteOrders;
 drop table if exists SiteOdetails;
-drop table if exists Addresses;
+drop table if exists SiteAddresses;
 
 
 CREATE TABLE SiteProducts    (PNO varchar(6),
                        PNAME varchar(30),
-					   QOH int not null, 
+					   QOH int not null,
+					   IMG blob not null,
 					   PRICE numeric(4,2),
-					   LEV int not null,
+					   MEDIUM varchar(30),
                        PRIMARY KEY (PNO)) ENGINE=INNODB;
-CREATE TABLE Addresses (ZIP varchar (6),
+CREATE TABLE SiteAddresses (ZIP varchar (6),
 					   CITY varchar (20),
 					   PRIMARY KEY (ZIP)) ENGINE=INNODB;
 					   
@@ -26,7 +27,7 @@ CREATE TABLE SiteEmployees (ENO varchar(5),
 					  HDATE date,
                       PRIMARY KEY(ENO),
 					  FOREIGN KEY (ZIP)
-                      REFERENCES Addresses(ZIP)
+                      REFERENCES SiteAddresses(ZIP)
                       ON UPDATE CASCADE ON DELETE RESTRICT)	ENGINE=INNODB;
 
 CREATE TABLE SiteCustomers (CNO varchar(6),
@@ -36,7 +37,7 @@ CREATE TABLE SiteCustomers (CNO varchar(6),
 					  PHONE varchar(15),
                       PRIMARY KEY(CNO, CNAME),
                       FOREIGN KEY (ZIP)
-                      REFERENCES Addresses(ZIP)
+                      REFERENCES SiteAddresses(ZIP)
                       ON UPDATE CASCADE ON DELETE RESTRICT) ENGINE=INNODB;
 					  
 CREATE TABLE SiteOrders (ONO varchar(6),

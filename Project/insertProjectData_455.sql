@@ -4,28 +4,25 @@ delete from SiteOrders;
 delete from SiteCustomers;
 delete from SiteEmployees;
 delete from SiteParts;
-delete from Addresses;
+delete from SiteAddresses;
 		
 /*
 Currenty utilizing dummy variables for testing purposes
 */
 		
-insert into Addresses
-	values	('67226','Wichita'),
+/*insert into SiteAddresses
+	values	('67226','Wichita');*/
 			
 			
 insert into SiteParts
-	values	('10506','Land Before Time I',200,19.99,20),
-			('10507','Land Before Time II',156,19.99,20),
-			('10508','Land Before Time III',190,19.99,20),
-			('10509','Land Before Time IV',60,19.99,20),
-			('10601','Sleeping Beauty',300,24.99,20),
-			('10701','When Harry Met Sally',120,19.99,30),
-			('10800','Dirty Harry',140,14.99,30),
-			('10900','Dr. Zhivago',100,24.00,30),
-			('10901','A Star is Born',100,04.99,30),
-			('10902','Star Wars',500,24.99,30),
-			('10903','Lord of the Rings',100,34.99,30);		
+	values	('01','image1',1),
+			('03','image3',1),
+			('04','image4',1),
+			('05','image5',1),
+			('06','image6',1),
+			('07','image7',1),
+			('08','image8',1),
+			('09','image9',1);		
 
 insert into SiteEmployees
 	values  ('1000','Jones','67226','1995-12-12'),
