@@ -10,26 +10,33 @@ delete from SiteAddresses;
 Currenty utilizing dummy variables for testing purposes
 */
 		
-/*insert into SiteAddresses
-	values	('67226','Wichita');*/
+insert into Addresses
+	values	('4581 Cherry Street','67226','Wichita', 'Kansas'),
+			('3321 Columbus Avenue','60606','Fort Dodge', 'Iowa'),
+			('1234 Number Lane','50302','Kansas City', 'Kansas'),
+			('387 Short Street','54444','Columbia','South Carolina'),
+			('7098 Dismy Court','66002','Liberal','Kansas'),
+			('2121 Jump Street','61111','Fort Hays','Kansas'),
+			('1051 Page Avenue','28403','Wilmington','North Carolina'),
+			('1051 S. Kerr Avenue','28403','Wilmington','North Carolina');
 			
 			
 insert into SiteParts
-	values	('01','image1',1),
-			('03','image3',1),
-			('04','image4',1),
-			('05','image5',1),
-			('06','image6',1),
-			('07','image7',1),
-			('08','image8',1),
-			('09','image9',1);		
+	values	('01','image1',1,LOAD_FILE('image1.jpg'),2000,'18x24','Oil on panel'),
+			('03','image3',1,LOAD_FILE('image3.jpg'),3000,'36x48','Acrylic on canvas'),
+			('04','image4',1,LOAD_FILE('image4.jpg'),1800,'18x24','Acrylic on canvas'),
+			('05','image5',1,LOAD_FILE('image5.jpg'),2700,'36x48','Acrylic on canvas'),
+			('06','image6',1,LOAD_FILE('image6.jpg'),1500,'16x20','Acrylic and color pencil on panel'),
+			('07','image7',1,LOAD_FILE('image7.jpg'),500,'9x12','Acrylic on canvas'),
+			('08','image8',1,LOAD_FILE('image8.jpg'),950,'28x36','Color pencil on paper'),
+			('09','image9',1,LOAD_FILE('image9.jpg'),3000,'36x48','Acrylic on canvas');		
 
 insert into SiteEmployees
-	values  ('1000','Jones','67226','1995-12-12'),
-			('1001','Smith','60606','1992-01-01'),
-			('1002','Brown','50302','1994-09-01'),
-			('1003','Green','28411','2002-09-01'),
-			('1004','Purple','28411','2003-01-01');			
+	values  ('1000','Harless','67226','1993-12-12'),
+			('1001','Owens','60606','1992-01-01'),
+			('1002','Roberts','50302','1994-09-01'),
+			('1003','Arnold','28411','2002-09-01'),
+			('1004','Pena','28411','2003-01-01');			
 
 insert into SiteCustomers
 	values ('1111','Charles','123 Main St.','67226','316-636-555'),
