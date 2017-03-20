@@ -1,0 +1,1 @@
+Primary key on SiteAddresses is ZIP, but this could pose a problem.
