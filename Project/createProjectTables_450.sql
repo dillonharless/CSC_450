@@ -22,7 +22,11 @@ CREATE TABLE SiteAddresses (STREETADD varchar (30),
 					   ZIP varchar (6),
 					   CITY varchar (20),
 					   _STATE varchar (30),
-					   PRIMARY KEY (ZIP)) ENGINE=INNODB;
+					   PRIMARY KEY (STREETADD, ZIP)) ENGINE=INNODB;
+CREATE TABLE LivesAt(CEMAIL varchar(40),
+					CNAME varchar(100),
+					STREETADD varchar(100),
+					ZIP varchar(100));
 					   
 CREATE TABLE SiteEmployees (ENO varchar(5),
                       ENAME varchar(15),
@@ -33,12 +37,12 @@ CREATE TABLE SiteEmployees (ENO varchar(5),
                       REFERENCES SiteAddresses(ZIP)
                       ON UPDATE CASCADE ON DELETE CASCADE)	ENGINE=INNODB;
 
-CREATE TABLE SiteCustomers (CNO varchar(6),
+CREATE TABLE SiteCustomers (CEMAIL varchar(40),
                       CNAME varchar(20),
                       STREET varchar(20),
 					  ZIP varchar(6),
 					  PHONE varchar(15),
-                      PRIMARY KEY(CNO, CNAME),
+                      PRIMARY KEY(CEMAIL),
                       FOREIGN KEY (ZIP)
                       REFERENCES SiteAddresses(ZIP)
                       ON UPDATE CASCADE ON DELETE CASCADE) ENGINE=INNODB;
