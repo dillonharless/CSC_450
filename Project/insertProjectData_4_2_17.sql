@@ -1,11 +1,10 @@
 -- no-auto-rehash
 delete from LivesAt;
-delete from SiteOdetails;
-delete from SiteOrders;
-delete from SiteCustomers;
-delete from SiteEmployees;
-delete from SiteProducts;
-delete from SiteAddresses;
+delete from SiteOdetails2;
+delete from SiteOrders2;
+delete from SiteCustomers2;
+delete from SiteProducts2;
+delete from SiteAddresses2;
 
 		
 /*
@@ -46,9 +45,9 @@ insert into SiteOrders2
 	values	('201','Charles@gmail.com','1994-12-10','1994-12-12'),
 			('202','Barbara@gmail.com''1995-01-12','1995-01-15'),
 			('203','Charles@gmail.com','1995-02-13','1995-02-20'),
-			('204','3333','2003-02-15','NULL'),
+			('204','Bill@gmail.com','2003-02-15','1998-05-14'),
 			('205','Charles@gmail.com','2003-02-15','2003-02-16'),
-			('206','5555','2003-02-15','2003-02-16');
+			('206','Maera@gmail.com','2003-02-15','2003-02-16');
 			
 insert into SiteOdetails2
 	values	('201','01',1),
