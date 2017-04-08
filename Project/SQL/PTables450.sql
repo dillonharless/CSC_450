@@ -2,6 +2,7 @@
 
 use rla8371
 
+drop table if exists Passwords;
 drop table if exists LivesAt;
 drop table if exists OurOdetails;
 drop table if exists OurOrders;
@@ -22,18 +23,25 @@ CREATE TABLE OurCustomers (CEMAIL varchar(40),
 					   CNAME varchar(20),
 					   PHONE varchar(15),
                        PRIMARY KEY(CEMAIL)) ENGINE=INNODB;
-					   
+
+CREATE TABLE OurPasswords (CEMAIL varchar(40),
+             PASSSWORD varchar(255),
+             PRIMARY KEY(CEMAIL,PASSWORD),
+             FOREIGN KEY(CEMAIL)
+             REFERENCES OurCustomers(CEMAIL)
+             ON UPDATE CASCADE ON DELETE CASCADE) ENGINE-INNODB;
+
 CREATE TABLE LivesAt (CEMAIL varchar(40),
 					   STREETADD varchar (30),
 					   ZIP varchar (6),
 					   CITY varchar (20),
 					   CSTATE varchar (30),
-					   PRIMARY KEY (CEMAIL,STREETADD,ZIP), 
+					   PRIMARY KEY (CEMAIL,STREETADD,ZIP),
 					   FOREIGN KEY(CEMAIL)
 					   REFERENCES OurCustomers(CEMAIL)
 					   ON UPDATE CASCADE ON DELETE CASCADE) ENGINE=INNODB;
-					   
-					  
+
+
 CREATE TABLE OurOrders (ONO int not null AUTO_INCREMENT,
                        CEMAIL varchar(40),
 					   RECEIVED date,
@@ -42,13 +50,13 @@ CREATE TABLE OurOrders (ONO int not null AUTO_INCREMENT,
                        FOREIGN KEY (CEMAIL)
                        REFERENCES OurCustomers(CEMAIL)
                        ON UPDATE CASCADE ON DELETE CASCADE) ENGINE=INNODB;
-					  
+
 CREATE TABLE OurOdetails (ONO int not null,
                        PNO varchar(6),
                        QTY int not null,
 					   PRIMARY KEY(ONO),
                        FOREIGN KEY(ONO)
-					   REFERENCES OurOrders(ONO)        
+					   REFERENCES OurOrders(ONO)
                        ON UPDATE CASCADE ON DELETE CASCADE,
 					   FOREIGN KEY(PNO)
 					   REFERENCES OurProducts(PNO)
