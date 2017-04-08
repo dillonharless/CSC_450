@@ -13,7 +13,7 @@ drop table if exists OurProducts;
 CREATE TABLE OurProducts (PNO varchar(6),
                        PNAME varchar(30),
 					   QOH int not null,
-					   IMG blob not null,
+					   IMG varchar(50) not null,
 					   PRICE int not null,
 					   DIMENSIONS varchar (10),
 					   MEDIUM varchar(50),
