@@ -1,8 +1,11 @@
 <?php
+ if(isset($_SESSION['email'])){
+		$setEmail = $_SESSION['email'];
+		
 
 	// $search = preg_replace("#[^0-9a-z]#i","",$searchq);
 	require_once('../pdo_configuration.php');
-	$sql = 'SELECT * FROM OurOrders';
+	$sql = 'SELECT * FROM ordersNew natural join orders1 where c_email ='. $setEmail .';';
 	$result = $conn->query($sql);
 	$errorInfo = $conn->errorInfo();
 	if (isset($errorInfo[2]))
@@ -44,28 +47,21 @@ require 'includes/Header.php';
 		</div>
 
 
+<?php 	foreach($conn->query($sql) as $row) { ?>
+			<tr>
+				<td><?php echo $row['p_id']; ?></td>
+<!-- 				<td><?php echo $row['c_email']; ?></td> -->
+<!-- 				<td><?php echo $row['customer_id']; ?></td> -->
+				<td><?php echo $row['total_price']; ?></td>
+ 				<td><?php echo $row['qty']; ?></td> 
+							
 
-<?php foreach($conn->query($sql) as $row) { ?>
-		<tr>
-		<?php $o_id = $row['id']; ?>
-			<td><?php echo $row['id']; ?></td>
-<!-- 			<td><?php echo $row['e_id']; ?></td> -->
-<!-- 			<td><?php echo $row['customer_id']; ?></td> -->
-			<td><?php echo $row['total_price']; ?></td>
-			<td><?php echo $row['created']; ?></td>
-			<td><?php echo $row['modified']; ?></td>
-<!-- 			<td><?php echo $row['qty']; ?></td> -->
-						<?php
-			echo '<td><a href="Ca_Discount.php?o_id=' . $o_id . '" class= "btn btn-warning">Discount Order 10%</a></td>'
-			?>
+			
 
-			<!-- <?php
-				echo '<td><a href="Delete_Employee.php?id=' . $email . '">Make Order</a></td>'
-			?> -->
-
-	</tr>
+			</tr>
 
 <?php } ?>
+
 
 
 	</table>
