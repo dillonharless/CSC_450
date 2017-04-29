@@ -6,7 +6,7 @@ $cart = new Cart;
 
 
 
-include 'dbConfig.php';
+include '../dbConfig.php';
 if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
     if($_REQUEST['action'] == 'addToCart' && !empty($_REQUEST['id'])){
         $productID = $_REQUEST['id'];
@@ -21,7 +21,7 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
         );
 
         $insertItem = $cart->insert($itemData);
-        $redirectLoc = $insertItem?'Ca_View_Cart.php':'Ca_Shop_Index.php';
+        $redirectLoc = $insertItem?'View_Cart.php':'Shop_Index.php';
         header("Location: ".$redirectLoc);
     }elseif($_REQUEST['action'] == 'updateCartItem' && !empty($_REQUEST['id'])){
         $itemData = array(
@@ -32,7 +32,7 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
         echo $updateItem?'ok':'err';die;
     }elseif($_REQUEST['action'] == 'removeCartItem' && !empty($_REQUEST['id'])){
         $deleteItem = $cart->remove($_REQUEST['id']);
-        header("Location: Ca_View_Cart.php");
+        header("Location: View_Cart.php");
     }elseif($_REQUEST['action'] == 'placeOrder' && $cart->total_items() > 0 && !empty($_SESSION['sessCustomerID'])){
         // insert order details into database
         $insertOrder = $db->query("INSERT INTO orders1 (customer_id, total_price, created, modified) VALUES ('".$_SESSION['sessCustomerID']."', '".$cart->total()."', '".date("Y-m-d H:i:s")."', '".date("Y-m-d H:i:s")."')");
@@ -43,23 +43,23 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
             // get cart items
             $cartItems = $cart->contents();
             foreach($cartItems as $item){
-                $sql .= "INSERT INTO order_items1 (order_id, product_id, quantity) VALUES ('".$orderID."', '".$item['id']."', '".$item['qty']."');";
+                $sql .= "INSERT INTO OurOrders (ONO, PNO, QTY) VALUES ('".$orderID."', '".$item['id']."', '".$item['qty']."');";
             }
             // insert order items into database
             $insertOrderItems = $db->multi_query($sql);
 
             if($insertOrderItems){
                 $cart->destroy();
-                header("Location: Ca_Order_Success.php?id=$orderID");
+                header("Location: Success.php?id=$orderID");
             }else{
-                header("Location: Ca_checkout.php");
+                header("Location: checkout.php");
             }
         }else{
-            header("Location: Ca_checkout.php");
+            header("Location: checkout.php");
         }
     }else{
-        header("Location: Ca_Shop_Index.php");
+        header("Location: Shop_Index.php");
     }
 }else{
-    header("Location: Ca_Shop_Index.php");
+    header("Location: Shop_Index.php");
 }

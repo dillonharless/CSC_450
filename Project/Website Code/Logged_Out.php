@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once ('../reg_conn.php');
 session_start();
 
@@ -13,7 +13,7 @@ session_start();
 			$message = 'You have reached this page in error';
 			$message2 = 'Please use the menu at the right';
 		}
-		require 'includes/Ca_Header.php';
+		require 'includes/Header.php';
 		?>
 		<main>
 		<?php
@@ -23,5 +23,5 @@ session_start();
 
 	</main>
 	<?php // Include the footer and quit the script:
-	include ('./includes/Ca_Footer.php');
+	include ('./includes/Footer.php');
 	?>

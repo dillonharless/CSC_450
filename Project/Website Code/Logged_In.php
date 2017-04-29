@@ -1,7 +1,7 @@
 <?php require_once ('secure_conn.php');
   // Access the existing session.
 session_start();
-require 'includes/Ca_Header.php';
+require 'includes/Header.php';
 ?>
 <style>
 .alert-success {
@@ -33,5 +33,5 @@ padding: 185px;
 
 
 	<?php // Include the footer and quit the script:
-			include ('./includes/Ca_Footer.php');
+			include ('./includes/Footer.php');
 			?>

@@ -1,6 +1,6 @@
 <?php
 // include database configuration file
-include 'dbConfig.php';
+include '../dbConfig.php';
 
 // initializ shopping cart class
 include 'Cart.php';
@@ -8,16 +8,19 @@ $cart = new Cart;
 
 // redirect to home if cart is empty
 if($cart->total_items() <= 0){
-    header("Location: Ca_Shop_Index.php");
+    header("Location: Shop_Index.php");
 }
 
 // set customer ID in session
 $_SESSION['sessCustomerID'] = 1;
+if(isset($_SESSION['email'])) {
+    $email = $_SESSION['email'];
+  }
 
 // get customer details by session customer ID
-$query = $db->query("SELECT * FROM customers1 WHERE id = ".$_SESSION['sessCustomerID']);
+$query = $db->query("SELECT * FROM OurCustomers WHERE CEMAIL = ".$email);
 $custRow = $query->fetch_assoc();
-require 'includes/Ca_Header.php';
+require 'includes/Header.php';
 ?>
 
 <!DOCTYPE html>
@@ -76,17 +79,17 @@ require 'includes/Ca_Header.php';
     </table>
     <div class="shipAddr">
         <h4>Shipping Details</h4>
-        <p><?php echo $custRow['name']; ?></p>
-        <p><?php echo $custRow['email']; ?></p>
-        <p><?php echo $custRow['phone']; ?></p>
-        <p><?php echo $custRow['address']; ?></p>
+        <p><?php echo $custRow['CNAME']; ?></p>
+        <p><?php echo $custRow['CEMAIL']; ?></p>
+        <p><?php echo $custRow['PHONE']; ?></p>
+        <p><?php echo $custRow['STREETADD']; ?></p>
     </div>
     <div class="footBtn">
-        <a href="Ca_Shop_Index.php" class="btn btn-warning"><i class="glyphicon glyphicon-menu-left"></i> Continue Shopping</a>
-        <a href="Ca_checkout.php" class="btn btn-danger"><i></i> Empty Cart</a>
-        <a href="Ca_CartAction.php?action=placeOrder" class="btn btn-success orderBtn">Place Order <i class="glyphicon glyphicon-menu-right"></i></a>
+        <a href="Shop_Index.php" class="btn btn-warning"><i class="glyphicon glyphicon-menu-left"></i> Continue Shopping</a>
+        <a href="checkout.php" class="btn btn-danger"><i></i> Empty Cart</a>
+        <a href="CartAction.php?action=placeOrder" class="btn btn-success orderBtn">Place Order <i class="glyphicon glyphicon-menu-right"></i></a>
     </div>
 </div>
 </body>
 </html>
-<?php include './includes/Ca_Footer.php'; ?>
+<?php include './includes/Footer.php'; ?>

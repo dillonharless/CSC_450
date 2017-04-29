@@ -2,7 +2,7 @@
 // initializ shopping cart class
 include 'Cart.php';
 $cart = new Cart;
-require 'includes/Ca_Header.php';
+require 'includes/Header.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +22,7 @@ require 'includes/Ca_Header.php';
     </style>
     <script>
     function updateCartItem(obj,id){
-        $.get("Ca_CartAction.php", {action:"updateCartItem", id:id, qty:obj.value}, function(data){
+        $.get("CartAction.php", {action:"updateCartItem", id:id, qty:obj.value}, function(data){
             if(data == 'ok'){
                 location.reload();
             }else{
@@ -60,7 +60,7 @@ require 'includes/Ca_Header.php';
             <td><?php echo '$'.$item["subtotal"].' USD'; ?></td>
             <td>
                 <!--<a href="Ca_CartAction.php?action=updateCartItem&id=" class="btn btn-info"><i class="glyphicon glyphicon-refresh"></i></a>-->
-                <a href="Ca_CartAction.php?action=removeCartItem&id=<?php echo $item["rowid"]; ?>" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="glyphicon glyphicon-trash"></i></a>
+                <a href="CartAction.php?action=removeCartItem&id=<?php echo $item["rowid"]; ?>" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="glyphicon glyphicon-trash"></i></a>
             </td>
         </tr>
         <?php } }else{ ?>
@@ -69,11 +69,11 @@ require 'includes/Ca_Header.php';
     </tbody>
     <tfoot>
         <tr>
-            <td><a href="Ca_Shop_Index.php" class="btn btn-warning"><i class="glyphicon glyphicon-menu-left"></i> Continue Shopping</a></td>
+            <td><a href="Shop_Index.php" class="btn btn-warning"><i class="glyphicon glyphicon-menu-left"></i> Continue Shopping</a></td>
             <td colspan="2"></td>
             <?php if($cart->total_items() > 0){ ?>
             <td class="text-center"><strong>Total <?php echo '$'.$cart->total().' USD'; ?></strong></td>
-            <td><a href="Ca_Finish.php" class="btn btn-success btn-block">Checkout <i class="glyphicon glyphicon-menu-right"></i></a></td>
+            <td><a href="Finish.php" class="btn btn-success btn-block">Checkout <i class="glyphicon glyphicon-menu-right"></i></a></td>
             <?php } ?>
         </tr>
     </tfoot>
@@ -81,4 +81,4 @@ require 'includes/Ca_Header.php';
 </div>
 </body>
 </html>
-<?php include './includes/Ca_Footer.php'; ?>
+<?php include './includes/Footer.php'; ?>
