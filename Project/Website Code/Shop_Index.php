@@ -1,7 +1,7 @@
 <?php
 // include database configuration file
-include 'dbConfig.php';
-require 'includes/Ca_Header.php';
+include '../dbConfig.php';
+require 'includes/Header.php';
 ?>
 <head>
 
@@ -18,8 +18,8 @@ require 'includes/Ca_Header.php';
 </head>
 <body>
 <div class="container">
-    <h1>Products</h1>
-    <a href="Ca_View_Cart.php" class="cart-link" title="View Cart"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+    <h1>Gallery:</h1>
+    <a href="View_Cart.php" class="cart-link" title="View Cart"><i class="glyphicon glyphicon-shopping-cart"></i></a>
     <div id="products" class="row list-group">
         <?php
         //get rows query
@@ -39,7 +39,10 @@ require 'includes/Ca_Header.php';
                             <p class="lead"><?php echo '$'.$row["price"].' USD'; ?></p>
                         </div>
                         <div class="col-md-6">
-                            <a class="btn btn-success" href="Ca_CartAction.php?action=addToCart&id=<?php echo $row["id"]; ?>">Add to cart</a>
+                            <a class="btn btn-success" href="CartAction.php?action=addToCart&id=<?php echo $row["id"]; ?>">Add to cart</a>
+                        </div>
+                        <div class="col-md-6">
+                            <a class="btn btn-primary" href="Images_Details.php?action=View Detail&id=<?php echo $row["id"]; ?>">View Detail</a>
                         </div>
                     </div>
                 </div>
@@ -52,4 +55,4 @@ require 'includes/Ca_Header.php';
     </div>
 </div>
 </body>
-  <?php include './includes/Ca_Footer.php'; ?>
+  <?php include './includes/Footer.php'; ?>

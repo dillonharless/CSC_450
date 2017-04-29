@@ -20,9 +20,9 @@ if (isset($_POST['send'])) {
 		$missing[]='password';
 
 	if (!$missing && !$errors) {
-		require_once ('../pdo_config.php'); // Connect to the db.
+		require_once ('../pdo_configuration.php'); // Connect to the db.
 		// Make the query:
-		$sql = "SELECT firstName, emailAddr, pw, folder FROM Ca_Reg_User WHERE emailAddr = :email";
+		$sql = "SELECT firstName, emailAddr, pw, folder FROM Reg_User WHERE emailAddr = :email";
 		$stmt = $conn->prepare($sql);
 		$stmt->bindValue(':email', $email);
 		$stmt->execute();
@@ -59,7 +59,7 @@ if (isset($_POST['send'])) {
 					$_SESSION['firstName']=$firstName;
 					$_SESSION['email']= $email;
 					$_SESSION['folder']= $folder;
-					$url = 'http://'. $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']). '/Ca_Logged_In.php';
+					$url = 'http://'. $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']). '/Logged_In.php';
 					header("Location: $url");
 					// header("Location: http://webdev.cislabs.uncw.edu/~ap7488/Ca_Logged_In.php");
 					exit;

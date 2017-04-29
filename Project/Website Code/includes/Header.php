@@ -3,6 +3,7 @@ include './includes/Title.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<title>Kyle's Gallery</title>
 	<link rel="icon" type="image/png" href="images/kyle.jpeg" />
 	<meta charset = "utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">

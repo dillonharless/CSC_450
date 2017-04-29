@@ -1,6 +1,6 @@
 <?php //This page is part of the checkout process if the user hasn't yet entered and email address.
 	require_once '../secure_conn.php';
-	require 'includes/Ca_Header.php';
+	require 'includes/Header.php';
 	if(!isset($_SESSION['firstName'])) {	//user not logged in
 		$guest_info = TRUE; //name and email must be collected
 	}
@@ -47,8 +47,8 @@
 				$validemail = $email;
 			}//guest info
 		if (!$missing && !$errors) {
-			require_once ('../pdo_config.php'); // Connect to the db.
-			$sql = "INSERT INTO JJ_addresses values (:email, :line1, :line2, :city, :state, :zip)";
+			require_once ('../pdo_configuration.php'); // Connect to the db.
+			$sql = "INSERT INTO addresses values (:email, :line1, :line2, :city, :state, :zip)";
 			$stmt = $conn->prepare($sql);
 			$stmt->bindValue(':email', $validemail);
 			$stmt->bindValue(':line1', $line1);
@@ -181,4 +181,4 @@
 		</fieldset>
         </form>
 	</main>
-<?php include 'includes/Ca_Footer.php'; ?>
+<?php include 'includes/Footer.php'; ?>
