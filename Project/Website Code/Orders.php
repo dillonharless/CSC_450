@@ -1,3 +1,5 @@
+
+<!-- If someone is logged in, this stores all the orders someone has placed in a variable called $result -->
 <?php
  if(isset($_SESSION['email'])){
 		$setEmail = $_SESSION['email'];
@@ -34,19 +36,15 @@ require 'includes/Header.php';
 <tr>
 
 		<td><strong>ID</strong></td>
-<!--     <td><strong>Emp ID</strong></td> -->
-<!--     <td><strong>Cus ID</strong></td> -->
 		<td><strong>Total</strong></td>
 		<td><strong>Created</strong></td>
 		<td><strong>Modified</strong></td>
-<!-- 		<td><strong>Quantity</strong></td> -->
 
 
+</tr>
+</div>
 
-		</tr>
-		</div>
-
-
+<!-- This echos to the page every element in each tuple that represents an order for a specific customer -->
 <?php 	foreach($conn->query($sql) as $row) { ?>
 			<tr>
 				<td><?php echo $row['p_id']; ?></td>
