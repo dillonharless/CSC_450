@@ -31,19 +31,6 @@ if (isset($_POST['send'])) {
 			echo $errorInfo[2];
 			exit;
 
-// Make the query to employee to grab e_id to make super-global:
-// 		$sql = "SELECT e_id FROM employee WHERE email = :email";
-// 		$stmt = $conn->prepare($sql);
-// 		$stmt->bindValue(':email', $email);
-// 		$stmt->execute();
-// 		$errorInfo = $stmt->errorInfo();
-// 		if (isset($errorInfo[2])){
-// 			echo $errorInfo[2];
-// 			exit;
-
-
-
-
 		}
 		else {
 			$rows = $stmt->rowCount();
@@ -61,7 +48,7 @@ if (isset($_POST['send'])) {
 					$_SESSION['folder']= $folder;
 					$url = 'http://'. $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']). '/Logged_In.php';
 					header("Location: $url");
-					// header("Location: http://webdev.cislabs.uncw.edu/~ap7488/Ca_Logged_In.php");
+
 					exit;
 
 				}
@@ -131,10 +118,8 @@ tab1 { padding-left: 16em; }
 
 		<div class= "container">
 <figure><img src="images/kyle.jpeg" alt="Responsive image" width="300" height = "160"  class="img-responsive center-block"></figure>
-<!-- <h1 class="title">CONTINUUM AUDIO</h1> -->
-      <form  class="form-signin" method="post" action="">
-			<!-- <h2 class= "form-signin-heading" style="white-space:pre">&ensp;		 Sign in</h2> -->
 
+      <form  class="form-signin" method="post" action="">
 				<?php if ($missing || $errors) { ?>
 				<p class="warning">Please fix the item(s) indicated.</p>
 				<?php } ?>

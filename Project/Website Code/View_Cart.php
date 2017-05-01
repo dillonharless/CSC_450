@@ -1,5 +1,5 @@
 <?php
-// initializ shopping cart class
+// initialize shopping cart class
 include 'Cart.php';
 $cart = new Cart;
 require 'includes/Header.php';
@@ -7,24 +7,25 @@ require 'includes/Header.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+    <!-- reference to the boostrap framework  -->
     <meta charset="utf-8">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
-    .container{padding: 25px 50px 75px 250px;
-
-
-    }
+    .container{padding: 25px 50px 75px 250px;}
     input[type="number"]{width: 20%;}
       tab1 { padding-left: 16em; }
     </style>
     <script>
+    /**
+    This function will update the cart contents by accessing the CartAction.php
+    */
+
     function updateCartItem(obj,id){
         $.get("CartAction.php", {action:"updateCartItem", id:id, qty:obj.value}, function(data){
             if(data == 'ok'){
-                location.reload();
+                location.reload(); //The reload of the page. 
             }else{
                 alert('Cart update failed, please try again.');
             }
@@ -59,7 +60,6 @@ require 'includes/Header.php';
             <td><input type="number" class="form-control text-center" value="<?php echo $item["qty"]; ?>" onchange="updateCartItem(this, '<?php echo $item["rowid"]; ?>')"></td>
             <td><?php echo '$'.$item["subtotal"].' USD'; ?></td>
             <td>
-                <!--<a href="Ca_CartAction.php?action=updateCartItem&id=" class="btn btn-info"><i class="glyphicon glyphicon-refresh"></i></a>-->
                 <a href="CartAction.php?action=removeCartItem&id=<?php echo $item["rowid"]; ?>" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="glyphicon glyphicon-trash"></i></a>
             </td>
         </tr>

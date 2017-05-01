@@ -4,8 +4,9 @@ date_default_timezone_set('America/New_York');
 include 'Cart.php';
 $cart = new Cart;
 
-
-
+//This page will get the information from the product and then will populate the tables orders1, and order_items1 with the Cart information
+//Also the information sotred in the session will be saved in the tables.
+//connects to the database with the dbConfig file which includes credentials of the db.
 include '../dbConfig.php';
 if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
     if($_REQUEST['action'] == 'addToCart' && !empty($_REQUEST['id'])){
@@ -33,17 +34,21 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
     }elseif($_REQUEST['action'] == 'removeCartItem' && !empty($_REQUEST['id'])){
         $deleteItem = $cart->remove($_REQUEST['id']);
         header("Location: View_Cart.php");
-    }elseif($_REQUEST['action'] == 'placeOrder' && $cart->total_items() > 0 && !empty($_SESSION['sessCustomerID'])){
+    }elseif($_REQUEST['action'] == 'placeOrder' && $cart->total_items() > 0 && !empty($_SESSION['email'])){
         // insert order details into database
-        $insertOrder = $db->query("INSERT INTO orders1 (customer_id, total_price, created, modified) VALUES ('".$_SESSION['sessCustomerID']."', '".$cart->total()."', '".date("Y-m-d H:i:s")."', '".date("Y-m-d H:i:s")."')");
+        if(isset($_SESSION['email'])) {
+            $email = $_SESSION['email'];
+          }
+        //insert the order into dataBase
+        $insertOrder = $db->query("INSERT INTO orders1 (customer_id, c_email, total_price, created) VALUES ('".$_SESSION['sessCustomerID']."','".$email."', '".$cart->total()."', '".date("Y-m-d H:i:s")."')");
 
         if($insertOrder){
-            $orderID = $db->insert_id;
+            $orderID = rand();
             $sql = '';
             // get cart items
             $cartItems = $cart->contents();
             foreach($cartItems as $item){
-                $sql .= "INSERT INTO OurOrders (ONO, PNO, QTY) VALUES ('".$orderID."', '".$item['id']."', '".$item['qty']."');";
+                $sql .= "INSERT INTO order_items1 (ORDER_ID, CEMAIL, P_NO, QTY) VALUES ('".$orderID."', '".$email."', '".$item['id']."', '".$item['qty']."');";
             }
             // insert order items into database
             $insertOrderItems = $db->multi_query($sql);

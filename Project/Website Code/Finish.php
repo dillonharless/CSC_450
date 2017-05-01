@@ -1,23 +1,19 @@
 <?php
+//starts the session
 	session_start();
+//requires secure connection which has an ssl certificated
 	require '../secure_conn.php';
 	require 'includes/Header.php';
 ?>
-
 <style>
-.alert-warning {
-
-padding: 185px;
-
-}
-
-
+.alert-warning {padding: 185px;}
 </style>
 	<div class= "alert-warning" role= "alert">
-
+		<!-- if the cart_contents is not set the cart is empty -->
     <?php if (empty($_SESSION['cart_contents']) || !isset($_SESSION['cart_contents'])) {
         echo '<h2>There are no products in your cart.</h2>';
 		echo '<h3>Please use the Shop link to shop.</h3>';
+		// if there is no SESSION started register or login
 	} elseif (empty($_SESSION['email']) || !isset($_SESSION['email'])) { //user is not logged in ?>
 		<h3>If you are a registered user, please log in using the link at the Top right</h3>
 		<h3>Or choose one of the other options below</h3>

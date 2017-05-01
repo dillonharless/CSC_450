@@ -1,7 +1,12 @@
 <?php $currentPage = basename($_SERVER['SCRIPT_FILENAME']); ?>
+<style>
+.navbar-custom a {
+    color: white;
+}
 
+</style>
 
-<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:#008080" >
+<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:#008080" style="white">
 <!-- <nav class="navbar navbar-light" style="background-color:#E15B5B" style="font-color:#E15B5B"> -->
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -11,7 +16,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="Index.php">
   <img src="images/Logo.png" width="150" height="120" class="d-inline-block align-top" alt="">
   Kyle's Art Gallery
 </a>
@@ -22,14 +27,12 @@
 				<li><a href="Index.php" <?php if ($currentPage == 'Index.php') {echo 'id="here"'; } ?>>Home</a></li>
 				<li><a href="Shop_Index.php" <?php if ($currentPage == 'Shop_Index.php') {echo 'id="here"'; } ?>>Shop</a></li>
 			</ul>
-				<ul class="nav navbar-nav navbar-right">
-				<li><a href="New_Customer.php" class="glyphicon glyphicon-user" <?php if($currentPage== 'New_Customer.php') {echo 'id="here"';} ?>></a></li>
-				</ul>
+
 				<?php
 							if(isset($_SESSION['email'])){ ?>
 				<ul class="nav navbar-nav navbar-left">
-				<li><a href="Index.php" <?php if ($currentPage == 'Index.php') {echo 'id="here"'; } ?>>Orders</a></li>
-				<li><a href="Shop_Index.php" <?php if ($currentPage == 'Shop_Index.php') {echo 'id="here"'; } ?>>Account</a></li>
+				<li><a href="View_Orders.php" <?php if ($currentPage == 'Index.php') {echo 'id="here"'; } ?>>Orders</a></li>
+				<li><a href="Account.php" <?php if ($currentPage == 'Shop_Index.php') {echo 'id="here"'; } ?>>Account</a></li>
 				<li><a href="View_Cart.php" <?php if ($currentPage == 'Shop_Index.php') {echo 'id="here"'; } ?>>Cart</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -37,6 +40,7 @@
 </ul>
 				<?php }else {?>
 					<ul class="nav navbar-nav navbar-right">
+					<li><a href="New_Customer.php" class="glyphicon glyphicon-user" <?php if($currentPage== 'New_Customer.php') {echo 'id="here"';} ?>></a></li>
 					<li><a href="Login.php" class="glyphicon glyphicon-off"<?php if($currentPage== 'Login.php') {echo 'id="here"';} ?>></a></li>
 				</ul>
 				<?php
@@ -50,6 +54,7 @@
 				<input type="text" name="search_string" class="form-control" placeholder="Search...">
         <input type="Submit" class="form-control" name = "search" value ="search"/>
 				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+				<link rel="stylesheet" type="text/css" href="styles/stilo.css">
 			</form>
 		</div>
 	</div>

@@ -4,15 +4,8 @@ session_start();
 require 'includes/Header.php';
 ?>
 <style>
-.alert-success {
-
-padding: 185px;
-
-}
-
-
+.alert-success {padding: 185px;}
 </style>
-
 	<?php //check for session variable
 		if(isset($_SESSION['firstName'])){
 		 	$firstname= $_SESSION['firstName'];

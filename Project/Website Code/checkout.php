@@ -1,8 +1,11 @@
 <?php
+session_start();
 // include database configuration file
 include '../dbConfig.php';
-
-// initializ shopping cart class
+if(isset($_SESSION['email'])) {
+    $email = $_SESSION['email'];
+  }
+// initialize shopping cart class
 include 'Cart.php';
 $cart = new Cart;
 
@@ -11,15 +14,18 @@ if($cart->total_items() <= 0){
     header("Location: Shop_Index.php");
 }
 
-// set customer ID in session
-$_SESSION['sessCustomerID'] = 1;
-if(isset($_SESSION['email'])) {
-    $email = $_SESSION['email'];
-  }
 
-// get customer details by session customer ID
-$query = $db->query("SELECT * FROM OurCustomers WHERE CEMAIL = ".$email);
+// // set customer ID in session
+// $_SESSION['sessCustomerID'] = $custRow['C_ID'];
+
+
+// get customer details by session customer EMAIL Address
+$query = $db->query("SELECT * FROM OurCustomers1 WHERE CEMAIL = '$email'");
 $custRow = $query->fetch_assoc();
+
+// set customer ID in session
+$_SESSION['sessCustomerID'] = $custRow['C_ID'];
+//includes the header which includes menu and styling
 require 'includes/Header.php';
 ?>
 
@@ -41,6 +47,7 @@ require 'includes/Header.php';
 </head>
 <body>
 <div class="container">
+  //gives a preview of the order
     <h1>Order Preview</h1>
     <table class="table">
     <thead>
@@ -52,6 +59,7 @@ require 'includes/Header.php';
         </tr>
     </thead>
     <tbody>
+        //push the cart items from the session if there is no items in the cart then cart shows empty
         <?php
         if($cart->total_items() > 0){
             //get cart items from session
@@ -59,12 +67,14 @@ require 'includes/Header.php';
             foreach($cartItems as $item){
         ?>
         <tr>
+          //will display the information from the cart
             <td><?php echo $item["name"]; ?></td>
             <td><?php echo '$'.$item["price"].' USD'; ?></td>
             <td><?php echo $item["qty"]; ?></td>
             <td><?php echo '$'.$item["subtotal"].' USD'; ?></td>
         </tr>
         <?php } }else{ ?>
+          //if no items the display message
         <tr><td colspan="4"><p>No items in your cart......</p></td>
         <?php } ?>
     </tbody>
@@ -82,7 +92,7 @@ require 'includes/Header.php';
         <p><?php echo $custRow['CNAME']; ?></p>
         <p><?php echo $custRow['CEMAIL']; ?></p>
         <p><?php echo $custRow['PHONE']; ?></p>
-        <p><?php echo $custRow['STREETADD']; ?></p>
+        <p><?php echo $custRow['ADDRESS']; ?></p>
     </div>
     <div class="footBtn">
         <a href="Shop_Index.php" class="btn btn-warning"><i class="glyphicon glyphicon-menu-left"></i> Continue Shopping</a>

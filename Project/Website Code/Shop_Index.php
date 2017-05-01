@@ -1,10 +1,11 @@
 <?php
 // include database configuration file
 include '../dbConfig.php';
+//includes the header which includes the menu
 require 'includes/Header.php';
 ?>
 <head>
-
+    <!-- reference to the bootstrap -->
     <meta charset="utf-8">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -27,12 +28,11 @@ require 'includes/Header.php';
         if($query->num_rows > 0){
             while($row = $query->fetch_assoc()){
         ?>
-        <div class="item col-lg-4">
+        <div class="col-md-4">
             <div class="thumbnail">
                 <div class="caption">
+  <!-- sources the image basaed on the name of the item -->
                 <h4><td><img src = "images/<?php echo $row["name"];?>" width="150" height = "80" class="img-responsive center-block" alt="equipment"></h4>
-                    <h4 class="list-group-item-heading"><?php echo $row["name"]; ?></h4>
-
                     <p class="list-group-item-text"><?php echo $row["description"]; ?></p>
                     <div class="row">
                         <div class="col-md-6">

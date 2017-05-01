@@ -1,5 +1,32 @@
 <?php //This page checks for required content, errors, and provides sticky output
 	require 'includes/Header.php';
+?>
+<style>
+.container{
+
+	padding: 190px;
+	padding-top: 20px;
+}
+.main {
+	padding-top: 200px;
+	padding-left: 200px;
+	padding-bottom: 40px;
+	background-color: #e6e6e6;
+}
+body {
+	padding-top: 20px;
+	padding-bottom: 40px;
+	background-color: #e6e6e6;
+}
+.alert-success {
+	padding-top: 200px;
+  position: static;
+  border: 3px solid #73AD21;
+}
+
+</style>
+
+<?php
 	if (isset($_POST['send'])) {
 	$missing = array();
 	$errors = array();
@@ -62,7 +89,7 @@
 		require_once ('../pdo_configuration.php'); // Connect to the db.
 		$folder = preg_replace("/[^a-zA-Z0-9]/", "", $email);
 		$folder = strtolower($folder);
-		$sql = "INSERT into Reg_User (firstName, lastName, emailAddr, pw, folder) VALUES (:fname, :lname, :email, :pw, :folder); INSERT into OurCustomers (CEMAIL, CNAME, PHONE) VALUES (:email, :fname, :phone)";
+		$sql = "INSERT into Reg_User (firstName, lastName, emailAddr, pw, folder) VALUES (:fname, :lname, :email, :pw, :folder); INSERT into OurCustomers1 (CEMAIL, ADDRESS, CNAME, PHONE) VALUES (:email, :address, :fname, :phone)";
 
 		$pw =
 	$stmt= $conn->prepare($sql);
@@ -73,29 +100,25 @@
 	$stmt->bindValue(':folder', $folder);
 
 	$stmt->bindValue(':email', $email);
+	$stmt->bindValue(':address', $address);
 	$stmt->bindValue(':fname', $firstname);
 	$stmt->bindValue(':phone', $phone);
+
 	$success = $stmt->execute();
 	$errorInfo = $stmt->errorInfo();
 	if (isset($errorInfo[2]))
 		echo $errorInfo[2];
 	else
 
-		echo '<main><h2>Completed...! </h2><h3>The new account has been succesfully created</h3></main>';
+		echo '<div class="alert alert-success" role="alert"><main><h2>Completed...! </h2><h3>The new account has been succesfully created</h3></main></div>';
+
 
 	include 'includes/Footer.php';
 	exit;
 	}
 }?>
 
-<style>
-.container{
 
-	padding: 190px;
-	padding-top: 20px;
-}
-
-</style>
 	<div class = "container">
 
         <h2>Create Account:</h2>
