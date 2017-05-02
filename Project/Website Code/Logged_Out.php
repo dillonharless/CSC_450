@@ -1,7 +1,7 @@
 <?php
 require_once ('../reg_conn.php'); //requires the regular connection for not https.
 session_start(); //session starts
-//This will destroy the session and will display a log out message. 
+//This will destroy the session and will display a log out message.
 		if (isset($_SESSION['firstName'])){
 			$firstname = $_SESSION['firstName'];
 			$_SESSION = array();
@@ -24,7 +24,7 @@ session_start(); //session starts
 		</style>
 		<main>
 		<?php
-
+		// display the loggged out message
 		echo '<h2>'.$message.'</h2>';
 		echo '<h3>'.$message2.'</h3>';
 		?>

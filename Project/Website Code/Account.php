@@ -20,7 +20,7 @@ session_start();
 
 require 'includes/Header.php';
 ?>
-
+// defining the html page
 <!DOCTYPE html>
 <style>
 .container{
@@ -45,7 +45,7 @@ require 'includes/Header.php';
 		</tr>
 
 		</div>
-
+//PHP for pulling the data for the table
 <?php foreach($conn->query($sql) as $row) { ?>
 		<tr>
 			<td><?php echo $row['CEMAIL']; ?></td>

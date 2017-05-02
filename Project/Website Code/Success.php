@@ -1,4 +1,5 @@
-<?php //this file will check for an order id, if it is set will display an order success message.
+<?php
+ //this file will check for an order id, if it is set will display an order success message.
 if(!isset($_REQUEST['id'])){
     header("Location: Shop_Index.php");
 }

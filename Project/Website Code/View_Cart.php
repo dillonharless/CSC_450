@@ -25,7 +25,7 @@ require 'includes/Header.php';
     function updateCartItem(obj,id){
         $.get("CartAction.php", {action:"updateCartItem", id:id, qty:obj.value}, function(data){
             if(data == 'ok'){
-                location.reload(); //The reload of the page. 
+                location.reload(); //The reload of the page.
             }else{
                 alert('Cart update failed, please try again.');
             }
@@ -60,6 +60,7 @@ require 'includes/Header.php';
             <td><input type="number" class="form-control text-center" value="<?php echo $item["qty"]; ?>" onchange="updateCartItem(this, '<?php echo $item["rowid"]; ?>')"></td>
             <td><?php echo '$'.$item["subtotal"].' USD'; ?></td>
             <td>
+                <!-- removing an item from the cart -->
                 <a href="CartAction.php?action=removeCartItem&id=<?php echo $item["rowid"]; ?>" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="glyphicon glyphicon-trash"></i></a>
             </td>
         </tr>
@@ -69,6 +70,7 @@ require 'includes/Header.php';
     </tbody>
     <tfoot>
         <tr>
+            <!--- checkout and continue shopping buttons -->
             <td><a href="Shop_Index.php" class="btn btn-warning"><i class="glyphicon glyphicon-menu-left"></i> Continue Shopping</a></td>
             <td colspan="2"></td>
             <?php if($cart->total_items() > 0){ ?>

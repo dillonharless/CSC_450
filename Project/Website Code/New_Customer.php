@@ -3,7 +3,7 @@
 ?>
 <style>
 .container{
-
+/* set CSS styling */
 	padding: 190px;
 	padding-top: 20px;
 }
@@ -27,6 +27,7 @@ body {
 </style>
 
 <?php
+//collect and save user information to add to the database
 	if (isset($_POST['send'])) {
 	$missing = array();
 	$errors = array();
@@ -118,7 +119,7 @@ body {
 	}
 }?>
 
-
+<!-- creating the html form and filler info -->
 	<div class = "container">
 
         <h2>Create Account:</h2>

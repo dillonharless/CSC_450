@@ -32,7 +32,7 @@ require 'includes/Header.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+<!-- link in external scripts and stylesheets for the page -->
     <meta charset="utf-8">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -47,7 +47,7 @@ require 'includes/Header.php';
 </head>
 <body>
 <div class="container">
-  //gives a preview of the order
+  <!--gives a preview of the order -->
     <h1>Order Preview</h1>
     <table class="table">
     <thead>
@@ -59,7 +59,7 @@ require 'includes/Header.php';
         </tr>
     </thead>
     <tbody>
-        //push the cart items from the session if there is no items in the cart then cart shows empty
+        <!--push the cart items from the session if there is no items in the cart then cart shows empty -->
         <?php
         if($cart->total_items() > 0){
             //get cart items from session
@@ -67,14 +67,14 @@ require 'includes/Header.php';
             foreach($cartItems as $item){
         ?>
         <tr>
-          //will display the information from the cart
+          <!--will display the information from the cart -->
             <td><?php echo $item["name"]; ?></td>
             <td><?php echo '$'.$item["price"].' USD'; ?></td>
             <td><?php echo $item["qty"]; ?></td>
             <td><?php echo '$'.$item["subtotal"].' USD'; ?></td>
         </tr>
         <?php } }else{ ?>
-          //if no items the display message
+          <!-- if no items the display message -->
         <tr><td colspan="4"><p>No items in your cart......</p></td>
         <?php } ?>
     </tbody>
@@ -87,6 +87,7 @@ require 'includes/Header.php';
         </tr>
     </tfoot>
     </table>
+    <!--display the shipping details for the user -->
     <div class="shipAddr">
         <h4>Shipping Details</h4>
         <p><?php echo $custRow['CNAME']; ?></p>

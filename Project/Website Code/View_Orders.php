@@ -19,6 +19,7 @@ require 'includes/Header.php';
 <!-- Display the infomation of previous orders in the following html table  -->
 <!DOCTYPE html>
 <style>
+/* setting CSS for the page */
 .container{
 	padding-top: 20px;
 	padding-bottom: 20px;
@@ -33,6 +34,7 @@ require 'includes/Header.php';
 <br><table width = "70%" cellpadding = "5" cellspace= "5" class="table">
 
 <tr>
+	<!-- set order information in bold -->
 		<td><strong>Order ID</strong></td>
 		<td><strong>Total</strong></td>
 		<td><strong>Created</strong></td>
@@ -43,6 +45,7 @@ require 'includes/Header.php';
 
 <?php foreach($conn->query($sql) as $row) { ?>
 		<tr>
+		<!-- insert information from the DB -->
 			<td><?php echo $row['ORDER_ID']; ?></td>
 			<td><?php echo $row['total_price']; ?></td>
 			<td><?php echo $row['created']; ?></td>

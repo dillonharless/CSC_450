@@ -63,7 +63,9 @@ if (isset($_POST['send'])) {
 require 'includes/Header.php';
 ?>
 <style>
+
 body {
+	/*set the style for the html page and CSS */
   padding-top: 100px;
   padding-bottom: 40px;
   background-color: #e6e6e6;
@@ -118,14 +120,14 @@ tab1 { padding-left: 16em; }
 
 		<div class= "container">
 <figure><img src="images/kyle.jpeg" alt="Responsive image" width="300" height = "160"  class="img-responsive center-block"></figure>
-
+<!-- display error when incorrect information is inserted -->
       <form  class="form-signin" method="post" action="">
 				<?php if ($missing || $errors) { ?>
 				<p class="warning">Please fix the item(s) indicated.</p>
 				<?php } ?>
 
       <label for="email" class= "sr-only">Email address
-
+<!-- email failure -->
 				<?php if ($missing && in_array('email', $missing)) { ?>
                         <span class="warning">An email address is required</span>
                     <?php } ?>
@@ -138,7 +140,7 @@ tab1 { padding-left: 16em; }
                     echo 'value="' . htmlspecialchars($email) . '"';
                 } ?>
 
-
+<!-- password failure -->
 				<?php if ($errors && in_array('password', $errors)) { ?>
                         <span class="warning">The password supplied does not match the password for this email address. Please try again.</span>
                     <?php } ?>

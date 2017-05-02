@@ -74,6 +74,7 @@
 		} // missing || errors
 		} //$_POST['send']	?>
 	<main>
+		<!-- this is for receiving a guest user information about an order -->
         <h2>Guest Info</h2>
         <p>Please, Fill this info out to checkout as a guest. The information would not be save in our databases</p>
         <form method="post" action="address.php">
